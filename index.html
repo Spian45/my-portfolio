@@ -4,80 +4,196 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Ibnu - Links</title>
+    <!-- Importing a sleek, modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Importing FontAwesome for official social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a;
+            font-family: 'Poppins', sans-serif;
+            /* Cool dark gradient background */
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
             color: #f8fafc;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            /* Animated background effect */
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
             width: 100%;
-            max-width: 400px;
-            padding: 2rem;
+            max-width: 420px;
+            padding: 2.5rem 2rem;
+            margin: 2rem 0;
             text-align: center;
             box-sizing: border-box;
+            /* Glassmorphism effect */
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
+
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            border: 3px solid #38bdf8;
+            border: 4px solid #38bdf8;
             margin-bottom: 1rem;
             object-fit: cover;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transition: transform 0.3s ease;
         }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
         h1 {
             margin: 0;
-            font-size: 1.75rem;
-            color: #f8fafc;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
         }
+
         p.bio {
-            color: #94a3b8;
+            color: #cbd5e1;
             font-size: 0.95rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.5;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
+
+        /* Cool little tags for your interests */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
         .link-btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background-color: #1e293b;
+            padding: 1.1rem;
+            background-color: rgba(255, 255, 255, 0.05);
             color: #f8fafc;
             text-decoration: none;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            transition: all 0.2s ease;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             font-weight: 500;
+            font-size: 1rem;
             box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
         }
+
+        .link-btn i {
+            font-size: 1.3rem;
+        }
+
         .link-btn:hover {
             background-color: #38bdf8;
             color: #0f172a;
             border-color: #38bdf8;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Give icons the dark color on hover so they stand out against the blue */
+        .link-btn:hover i {
+            color: #0f172a;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- You can replace the src URL with a direct link to your own photo -->
-        <img src="https://ui-avatars.com/api/?name=Muhammad+Ibnu&background=38bdf8&color=fff&size=120" alt="Muhammad Ibnu" class="profile-img">
+        <!-- Profile Picture -->
+        <img src="https://ui-avatars.com/api/?name=Muhammad+Ibnu&background=38bdf8&color=fff&size=150" alt="Muhammad Ibnu" class="profile-img">
 
+        <!-- Name & Expanded Bio -->
         <h1>Muhammad Ibnu</h1>
-        <p class="bio">Informatics Engineering Student in Makassar 💻<br>I Like Games</p>
+        <p class="bio">
+            Informatics Engineering student at STMIK Kharisma 🎓<br>
+            PC hardware tinkerer, novel writer & AI explorer 🤖<br>
+            Immersed in fantasy Manhwa & Light Novels 📖
+        </p>
 
-        <!-- Replace the href links with your actual profile URLs -->
-        <a href="https://github.com/Spian45" class="link-btn" target="_blank">GitHub</a>
-        <a href="https://steamcommunity.com/id/YOUR_STEAM" class="link-btn" target="_blank">Steam</a>
-        <a href="https://discord.com/users/YOUR_DISCORD_ID" class="link-btn" target="_blank">Discord</a>
-        <a href="https://instagram.com/Spian45" class="link-btn" target="_blank">Instagram</a>
+        <!-- Interest Tags -->
+        <div class="tags-container">
+            <span class="tag"><i class="fas fa-gamepad"></i> Games</span>
+            <span class="tag"><i class="fas fa-car"></i> Novel</span>
+            <span class="tag"><i class="fas fa-pen-nib"></i> Anime Art</span>
+            <span class="tag"><i class="fas fa-network-wired"></i> Tech</span>
+        </div>
+
+        <!-- Social Links with Icons -->
+        <div class="links-wrapper">
+            <a href="https://github.com/Spian45" class="link-btn" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            
+            <a href="https://steamcommunity.com/id/YOUR_STEAM" class="link-btn" target="_blank">
+                <i class="fab fa-steam"></i> Steam
+            </a>
+            
+            <a href="https://discord.com/users/YOUR_DISCORD_ID" class="link-btn" target="_blank">
+                <i class="fab fa-discord"></i> Discord
+            </a>
+            
+            <a href="https://instagram.com/Spian45" class="link-btn" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+
+            <!-- Extra Socials -->
+            <a href="https://twitter.com/YOUR_X" class="link-btn" target="_blank">
+                <i class="fab fa-x-twitter"></i> X (Twitter)
+            </a>
+
+            <a href="https://youtube.com/YOUR_YT" class="link-btn" target="_blank">
+                <i class="fab fa-youtube"></i> YouTube
+            </a>
+
+            <a href="https://tiktok.com/@YOUR_TIKTOK" class="link-btn" target="_blank">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+        </div>
     </div>
 </body>
 </html>
