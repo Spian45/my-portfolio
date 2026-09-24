@@ -10,10 +10,14 @@ Since it uses only standard HTML and CSS with no external frameworks, it is extr
 
 ## ✨ Features
 
-* **Single-File Architecture:** Everything (HTML structure and CSS styling) is contained within `index.html`.
+* **Single-File Architecture:** Everything (HTML, CSS and a small vanilla JS script) is contained within `index.html`.
 * **Modern Dark Theme:** A sleek, low-contrast dark mode design.
 * **Fully Responsive:** Adapts seamlessly to mobile screens, tablets, and desktop monitors.
-* **Hover Animations:** Smooth transitions and shadow effects on the link buttons.
+* **Animated Background:** Interactive constellation starfield (reacts to your cursor) over drifting aurora glows.
+* **Eye Candy:** Spinning gradient avatar ring, shimmering name, terminal-style typewriter, staggered entrance animations.
+* **Brand-Colored Link Cards:** 3D tilt, mouse-following spotlight and per-platform accent colors.
+* **Easter Eggs:** Click the avatar for a sparkle burst, or try the Konami code 🎮.
+* **Accessible:** Respects `prefers-reduced-motion` and supports keyboard focus styles.
 * **Zero Dependencies:** No npm, Node.js, or heavy frameworks required.
 
 ---

@@ -4,82 +4,247 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Ibnu - Links</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Muhammad Ibnu — Informatics Engineering student, PC hardware tinkerer, novel writer & AI explorer.">
+    <meta name="theme-color" content="#0b1020">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
+        :root {
+            --bg: #0b1020;
+            --accent: #38bdf8;
+            --accent-2: #a78bfa;
+            --accent-3: #f472b6;
+            --text: #f8fafc;
+            --muted: #cbd5e1;
+            --glass: rgba(15, 23, 42, 0.55);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            /* Cool dark gradient background */
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            color: #f8fafc;
+            background: var(--bg);
+            color: var(--text);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            /* Animated background effect */
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            overflow-x: hidden;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* ---------- Background layers ---------- */
+        #stars {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
         }
 
+        .aurora {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .aurora span {
+            position: absolute;
+            width: 55vmax;
+            height: 55vmax;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+            animation: drift 22s ease-in-out infinite alternate;
+        }
+
+        .aurora span:nth-child(1) { background: var(--accent);   top: -20vmax; left: -15vmax; }
+        .aurora span:nth-child(2) { background: var(--accent-2); bottom: -25vmax; right: -15vmax; animation-delay: -7s; }
+        .aurora span:nth-child(3) { background: var(--accent-3); top: 30%; left: 40%; width: 35vmax; height: 35vmax; opacity: 0.2; animation-delay: -14s; }
+
+        @keyframes drift {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(8vmax, 6vmax) scale(1.15); }
+            100% { transform: translate(-6vmax, 10vmax) scale(0.95); }
+        }
+
+        /* Cursor glow (desktop only) */
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 60%);
+            transform: translate(-50%, -50%);
+            left: -500px;
+            top: -500px;
+            transition: opacity 0.3s;
+        }
+
+        /* ---------- Card ---------- */
         .container {
             width: 95%;
-            /* WIDENED CONTAINER */
-            max-width: 900px; 
-            padding: 3rem 2.5rem;
+            max-width: 900px;
+            padding: 3rem 2.5rem 2rem;
             margin: 2rem 0;
             text-align: center;
-            box-sizing: border-box;
-            /* Glassmorphism effect */
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            background: var(--glass);
+            backdrop-filter: blur(16px) saturate(140%);
+            -webkit-backdrop-filter: blur(16px) saturate(140%);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            position: relative;
         }
+
+        /* Animated gradient border */
+        .container::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(120deg, var(--accent), transparent 30%, transparent 70%, var(--accent-2));
+            background-size: 300% 300%;
+            animation: borderShift 8s linear infinite;
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        @keyframes borderShift {
+            0%   { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* Staggered entrance */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: calc(var(--i, 0) * 90ms + 100ms);
+        }
+
+        @keyframes rise {
+            to { opacity: 1; transform: none; }
+        }
+
+        /* ---------- Avatar ---------- */
+        .avatar-wrap {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.2rem;
+            cursor: pointer;
+        }
+
+        .avatar-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+            animation: spin 4s linear infinite;
+            filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.55));
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         .profile-img {
-            width: 140px;
-            height: 140px;
+            position: relative;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 4px solid #38bdf8;
-            margin-bottom: 1rem;
+            border: 5px solid var(--bg);
             object-fit: cover;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-            transition: transform 0.3s ease;
+            display: block;
+            background: var(--bg);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .profile-img:hover {
-            transform: scale(1.05);
+        .avatar-wrap:hover .profile-img { transform: scale(1.06) rotate(-3deg); }
+
+        .status-dot {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #22c55e;
+            border: 4px solid var(--bg);
+            z-index: 1;
         }
 
+        .status-dot::after {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #22c55e;
+            animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            75%, 100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* ---------- Text ---------- */
         h1 {
             margin: 0;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #ffffff;
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            font-weight: 700;
             letter-spacing: 0.5px;
+            background: linear-gradient(90deg, #fff 0%, var(--accent) 25%, var(--accent-2) 50%, var(--accent-3) 75%, #fff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shine 6s linear infinite;
         }
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .typing {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin: 0.6rem 0 0;
+            min-height: 1.5em;
+        }
+
+        .typing .prompt { color: var(--accent-2); }
+
+        .typing .caret {
+            display: inline-block;
+            width: 0.55em;
+            height: 1.1em;
+            margin-left: 2px;
+            vertical-align: -0.18em;
+            background: var(--accent);
+            animation: blink 1s steps(1) infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
 
         p.bio {
-            color: #cbd5e1;
+            color: var(--muted);
             font-size: 1rem;
-            margin-top: 0.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            margin: 1rem 0 1.5rem;
+            line-height: 1.7;
         }
 
-        /* Cool little tags for your interests */
+        /* ---------- Tags ---------- */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
@@ -89,109 +254,460 @@
         }
 
         .tag {
-            background: rgba(56, 189, 248, 0.15);
-            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
             padding: 6px 14px;
-            border-radius: 20px;
+            border-radius: 999px;
             font-size: 0.85rem;
             font-weight: 500;
             border: 1px solid rgba(56, 189, 248, 0.3);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s, box-shadow 0.25s;
+            cursor: default;
         }
 
-        /* GRID LAYOUT FOR WIDE SCREENS */
+        .tag:hover {
+            transform: translateY(-3px) scale(1.06);
+            background: rgba(56, 189, 248, 0.2);
+            box-shadow: 0 6px 18px rgba(56, 189, 248, 0.25);
+        }
+
+        .tag:hover i { animation: wiggle 0.5s ease; }
+
+        @keyframes wiggle {
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+
+        /* ---------- Links ---------- */
         .links-wrapper {
             display: grid;
-            /* This makes buttons sit side-by-side, adjusting automatically based on screen size */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.2rem;
             width: 100%;
+            perspective: 800px;
         }
 
         .link-btn {
+            --brand: var(--accent);
+            --mx: 50%;
+            --my: 50%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
+            gap: 14px;
             width: 100%;
-            padding: 1.2rem;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: #f8fafc;
+            padding: 1.1rem 1.3rem;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
             text-decoration: none;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 16px;
+            border: 1px solid var(--border);
             font-weight: 500;
             font-size: 1rem;
-            box-sizing: border-box;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, border-color 0.3s, box-shadow 0.3s, background 0.3s;
         }
 
-        .link-btn i {
-            font-size: 1.3rem;
+        /* Mouse-following spotlight */
+        .link-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(220px circle at var(--mx) var(--my), color-mix(in srgb, var(--brand) 35%, transparent), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
         }
 
-        .link-btn:hover {
-            background-color: #38bdf8;
-            color: #0f172a;
-            border-color: #38bdf8;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+        .link-btn:hover::before,
+        .link-btn:focus-visible::before { opacity: 1; }
+
+        .link-btn:hover,
+        .link-btn:focus-visible {
+            border-color: color-mix(in srgb, var(--brand) 70%, transparent);
+            box-shadow: 0 10px 30px color-mix(in srgb, var(--brand) 30%, transparent);
+            background: rgba(255, 255, 255, 0.07);
+            outline: none;
         }
 
-        /* Give icons the dark color on hover so they stand out against the blue */
-        .link-btn:hover i {
-            color: #0f172a;
+        .link-btn .icon {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--brand) 18%, transparent);
+            color: var(--brand);
+            font-size: 1.35rem;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s, color 0.3s;
+        }
+
+        .link-btn:hover .icon,
+        .link-btn:focus-visible .icon {
+            transform: scale(1.12) rotate(-8deg);
+            background: var(--brand);
+            color: var(--on-brand, #0b1020);
+        }
+
+        .link-btn .label {
+            position: relative;
+            flex: 1;
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .link-btn .label small {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #94a3b8;
+        }
+
+        .link-btn .arrow {
+            position: relative;
+            opacity: 0.35;
+            transform: translateX(-6px);
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .link-btn:hover .arrow,
+        .link-btn:focus-visible .arrow {
+            opacity: 1;
+            transform: translateX(0) rotate(-45deg);
+        }
+
+        .github    { --brand: #e6edf3; }
+        .steam     { --brand: #66c0f4; }
+        .discord   { --brand: #5865f2; --on-brand: #fff; }
+        .instagram { --brand: #e1306c; --on-brand: #fff; }
+        .x         { --brand: #e7e9ea; }
+        .youtube   { --brand: #ff0033; --on-brand: #fff; }
+        .tiktok    { --brand: #25f4ee; }
+
+        .instagram:hover .icon,
+        .instagram:focus-visible .icon {
+            background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            margin-top: 2.2rem;
+            font-size: 0.8rem;
+            color: #64748b;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        footer .heart { color: var(--accent-3); display: inline-block; animation: beat 1.4s ease-in-out infinite; }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.25); }
+            30% { transform: scale(1); }
+        }
+
+        /* Sparkle burst particles (avatar click / easter egg) */
+        .spark {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            font-size: 1.1rem;
+            animation: burst 0.9s ease-out forwards;
+        }
+
+        @keyframes burst {
+            to { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.3); opacity: 0; }
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            transform: translate(-50%, 120px);
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--accent-2);
+            color: var(--text);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s, visibility 0.3s;
+            z-index: 60;
+        }
+
+        .toast.show { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
+
+        @media (max-width: 600px) {
+            .container { padding: 2.2rem 1.2rem 1.5rem; border-radius: 22px; }
+            .avatar-wrap { width: 124px; height: 124px; }
+            .cursor-glow { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="https://ui-avatars.com/api/?name=Muhammad+Ibnu&background=38bdf8&color=fff&size=150" alt="Muhammad Ibnu" class="profile-img">
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div class="cursor-glow" aria-hidden="true"></div>
 
-        <h1>Muhammad Ibnu</h1>
-        <p class="bio">
-            Informatics Engineering student at STMIK Kharisma 🎓<br>
-            PC hardware tinkerer, novel writer & AI explorer 🤖<br>
-            Immersed in fantasy Manhwa & Light Novels 📖
+    <main class="container">
+        <div class="avatar-wrap reveal" style="--i:0" id="avatar" title="Click me ✨">
+            <img src="https://ui-avatars.com/api/?name=Muhammad+Ibnu&background=38bdf8&color=fff&size=300" alt="Muhammad Ibnu" class="profile-img">
+            <span class="status-dot" title="Online"></span>
+        </div>
+
+        <h1 class="reveal" style="--i:1">Muhammad Ibnu</h1>
+
+        <p class="typing reveal" style="--i:2" aria-live="polite">
+            <span class="prompt">&gt;</span> <span id="typed"></span><span class="caret"></span>
         </p>
 
-        <div class="tags-container">
+        <p class="bio reveal" style="--i:3">
+            Informatics Engineering student at STMIK Kharisma 🎓<br>
+            PC hardware tinkerer, novel writer &amp; AI explorer 🤖<br>
+            Immersed in fantasy Manhwa &amp; Light Novels 📖
+        </p>
+
+        <div class="tags-container reveal" style="--i:4">
             <span class="tag"><i class="fas fa-gamepad"></i> Games</span>
             <span class="tag"><i class="fas fa-book"></i> Novel</span>
             <span class="tag"><i class="fas fa-pen-nib"></i> Anime Art</span>
             <span class="tag"><i class="fas fa-network-wired"></i> Tech</span>
         </div>
 
-        <div class="links-wrapper">
-            <a href="https://github.com/Spian45" class="link-btn" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            
-            <a href="https://steamcommunity.com/id/YOUR_STEAM" class="link-btn" target="_blank">
-                <i class="fab fa-steam"></i> Steam
-            </a>
-            
-            <a href="https://discord.com/users/YOUR_DISCORD_ID" class="link-btn" target="_blank">
-                <i class="fab fa-discord"></i> Discord
-            </a>
-            
-            <a href="https://instagram.com/Spian45" class="link-btn" target="_blank">
-                <i class="fab fa-instagram"></i> Instagram
+        <nav class="links-wrapper">
+            <a href="https://github.com/Spian45" class="link-btn github reveal" style="--i:5" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span class="label">GitHub<small>Code &amp; projects</small></span>
+                <i class="fas fa-arrow-right arrow"></i>
             </a>
 
-            <a href="https://twitter.com/YOUR_X" class="link-btn" target="_blank">
-                <i class="fab fa-x-twitter"></i> X (Twitter)
+            <a href="https://steamcommunity.com/id/YOUR_STEAM" class="link-btn steam reveal" style="--i:6" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-steam"></i></span>
+                <span class="label">Steam<small>Let's play together</small></span>
+                <i class="fas fa-arrow-right arrow"></i>
             </a>
 
-            <a href="https://youtube.com/YOUR_YT" class="link-btn" target="_blank">
-                <i class="fab fa-youtube"></i> YouTube
+            <a href="https://discord.com/users/YOUR_DISCORD_ID" class="link-btn discord reveal" style="--i:7" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-discord"></i></span>
+                <span class="label">Discord<small>Come say hi</small></span>
+                <i class="fas fa-arrow-right arrow"></i>
             </a>
 
-            <a href="https://tiktok.com/@YOUR_TIKTOK" class="link-btn" target="_blank">
-                <i class="fab fa-tiktok"></i> TikTok
+            <a href="https://instagram.com/Spian45" class="link-btn instagram reveal" style="--i:8" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-instagram"></i></span>
+                <span class="label">Instagram<small>Life snapshots</small></span>
+                <i class="fas fa-arrow-right arrow"></i>
             </a>
-        </div>
-    </div>
+
+            <a href="https://twitter.com/YOUR_X" class="link-btn x reveal" style="--i:9" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-x-twitter"></i></span>
+                <span class="label">X (Twitter)<small>Random thoughts</small></span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </a>
+
+            <a href="https://youtube.com/YOUR_YT" class="link-btn youtube reveal" style="--i:10" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-youtube"></i></span>
+                <span class="label">YouTube<small>Videos &amp; streams</small></span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </a>
+
+            <a href="https://tiktok.com/@YOUR_TIKTOK" class="link-btn tiktok reveal" style="--i:11" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-tiktok"></i></span>
+                <span class="label">TikTok<small>Short clips</small></span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </a>
+        </nav>
+
+        <footer class="reveal" style="--i:12">
+            made with <span class="heart">♥</span> &amp; ☕ by Muhammad Ibnu · <span id="year"></span>
+        </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <script>
+        (() => {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            /* ---------- Typewriter ---------- */
+            const phrases = [
+                'Informatics Engineering student',
+                'PC hardware tinkerer',
+                'Novel writer',
+                'AI explorer',
+                'Manhwa & Light Novel enjoyer',
+                'Gamer at heart'
+            ];
+            const typed = document.getElementById('typed');
+            if (reduceMotion) {
+                typed.textContent = phrases[0];
+            } else {
+                let p = 0, c = 0, deleting = false;
+                const tick = () => {
+                    const word = phrases[p];
+                    c += deleting ? -1 : 1;
+                    typed.textContent = word.slice(0, c);
+                    let delay = deleting ? 35 : 70;
+                    if (!deleting && c === word.length) { delay = 1600; deleting = true; }
+                    else if (deleting && c === 0) { deleting = false; p = (p + 1) % phrases.length; delay = 300; }
+                    setTimeout(tick, delay);
+                };
+                setTimeout(tick, 900);
+            }
+
+            /* ---------- Constellation background ---------- */
+            const canvas = document.getElementById('stars');
+            const ctx = canvas.getContext('2d');
+            let w, h, dpr, stars = [];
+            const mouse = { x: -9999, y: -9999 };
+
+            const resize = () => {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                w = canvas.width = innerWidth * dpr;
+                h = canvas.height = innerHeight * dpr;
+                canvas.style.width = innerWidth + 'px';
+                canvas.style.height = innerHeight + 'px';
+                const count = Math.min(110, Math.floor((innerWidth * innerHeight) / 12000));
+                stars = Array.from({ length: count }, () => ({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.25 * dpr,
+                    vy: (Math.random() - 0.5) * 0.25 * dpr,
+                    r: (Math.random() * 1.4 + 0.4) * dpr,
+                    tw: Math.random() * Math.PI * 2
+                }));
+            };
+
+            const draw = () => {
+                ctx.clearRect(0, 0, w, h);
+                const linkDist = 120 * dpr;
+                for (let i = 0; i < stars.length; i++) {
+                    const s = stars[i];
+                    if (!reduceMotion) {
+                        s.x += s.vx; s.y += s.vy; s.tw += 0.03;
+                        if (s.x < 0 || s.x > w) s.vx *= -1;
+                        if (s.y < 0 || s.y > h) s.vy *= -1;
+                        // gentle repel from cursor
+                        const mx = s.x - mouse.x, my = s.y - mouse.y;
+                        const md = Math.hypot(mx, my);
+                        if (md < 100 * dpr && md > 0) {
+                            s.x += (mx / md) * 0.8 * dpr;
+                            s.y += (my / md) * 0.8 * dpr;
+                        }
+                    }
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(226, 232, 240, ${0.5 + Math.sin(s.tw) * 0.35})`;
+                    ctx.fill();
+
+                    for (let j = i + 1; j < stars.length; j++) {
+                        const t = stars[j];
+                        const d = Math.hypot(s.x - t.x, s.y - t.y);
+                        if (d < linkDist) {
+                            ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - d / linkDist) * 0.25})`;
+                            ctx.lineWidth = dpr * 0.7;
+                            ctx.beginPath();
+                            ctx.moveTo(s.x, s.y);
+                            ctx.lineTo(t.x, t.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                if (!reduceMotion) requestAnimationFrame(draw);
+            };
+
+            resize();
+            draw();
+            addEventListener('resize', () => { resize(); if (reduceMotion) draw(); });
+
+            /* ---------- Cursor glow + card effects ---------- */
+            const glow = document.querySelector('.cursor-glow');
+            addEventListener('pointermove', e => {
+                mouse.x = e.clientX * dpr;
+                mouse.y = e.clientY * dpr;
+                if (finePointer) {
+                    glow.style.left = e.clientX + 'px';
+                    glow.style.top = e.clientY + 'px';
+                }
+            });
+
+            document.querySelectorAll('.link-btn').forEach(btn => {
+                btn.addEventListener('pointermove', e => {
+                    const r = btn.getBoundingClientRect();
+                    const x = e.clientX - r.left, y = e.clientY - r.top;
+                    btn.style.setProperty('--mx', x + 'px');
+                    btn.style.setProperty('--my', y + 'px');
+                    if (finePointer && !reduceMotion) {
+                        const rx = ((y / r.height) - 0.5) * -10;
+                        const ry = ((x / r.width) - 0.5) * 10;
+                        btn.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+                    }
+                });
+                btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+            });
+
+            // Once entrance animation finishes, drop the class so inline transforms (tilt) apply
+            document.querySelectorAll('.reveal').forEach(el => {
+                el.addEventListener('animationend', ev => {
+                    if (ev.animationName === 'rise') el.classList.remove('reveal');
+                });
+            });
+
+            /* ---------- Sparkle burst ---------- */
+            const emojis = ['✨', '⭐', '💫', '⚡', '🌸', '🎮', '📖'];
+            const burst = (x, y, n = 18) => {
+                if (reduceMotion) return;
+                for (let i = 0; i < n; i++) {
+                    const s = document.createElement('span');
+                    s.className = 'spark';
+                    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    const angle = Math.random() * Math.PI * 2;
+                    const dist = 60 + Math.random() * 120;
+                    s.style.left = x + 'px';
+                    s.style.top = y + 'px';
+                    s.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+                    s.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+                    s.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
+                    document.body.appendChild(s);
+                    s.addEventListener('animationend', () => s.remove());
+                }
+            };
+
+            document.getElementById('avatar').addEventListener('click', e => burst(e.clientX, e.clientY));
+
+            /* ---------- Easter egg: Konami code ---------- */
+            const toast = document.getElementById('toast');
+            const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+            let pos = 0;
+            addEventListener('keydown', e => {
+                const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+                pos = key === code[pos] ? pos + 1 : (key === code[0] ? 1 : 0);
+                if (pos === code.length) {
+                    pos = 0;
+                    for (let k = 0; k < 6; k++) {
+                        setTimeout(() => burst(Math.random() * innerWidth, Math.random() * innerHeight, 14), k * 150);
+                    }
+                    toast.textContent = '🎮 Cheat code activated! +30 lives';
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2800);
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
