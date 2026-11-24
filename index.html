@@ -4,19 +4,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPIAN45.CV_ - Muh. Ibnu</title>
-    <meta name="description" content="Muh. Ibnu's pixel portfolio. Explore skills, unlock the journey, and take on creative quests.">
-    <link rel="canonical" href="https://kitatumbuh.my.canva.site/website-design">
-    <meta http-equiv="refresh" content="0; url=https://kitatumbuh.my.canva.site/website-design">
-    <script>window.location.replace("https://kitatumbuh.my.canva.site/website-design");</script>
+    <meta name="description" content="Meet Muh. Ibnu. Explore skills, unlock the journey, and take on creative quests.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-               background: #1f2a2a; color: #e5e7eb; font-family: monospace; text-align: center; }
-        a { color: #a3e635; }
+        :root {
+            --bg: #1f272a;
+            --grid: rgba(255, 255, 255, 0.045);
+            --card: #283236;
+            --border: #f1f5f4;
+            --shadow: #ff866e;
+            --green: #b9e96d;
+            --text: #e8ecea;
+            --muted: #8d9693;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.25rem;
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 32px 32px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .card {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            padding: 3.5rem 2rem 3rem;
+            background: var(--card);
+            border: 3px solid var(--border);
+            box-shadow: 12px 12px 0 var(--shadow);
+            text-align: center;
+        }
+
+        .screen { display: none; }
+        .screen.active { display: block; animation: pop 0.25s steps(4); }
+
+        @keyframes pop {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: none; }
+        }
+
+        .eyebrow {
+            margin: 0 0 1.75rem;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--text);
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 2rem;
+            font-family: 'Silkscreen', monospace;
+            font-weight: 700;
+            font-size: clamp(2.2rem, 9vw, 4rem);
+            line-height: 1;
+            letter-spacing: 3px;
+            color: var(--green);
+        }
+
+        .cursor { animation: blink 1s steps(1) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .tagline {
+            max-width: 400px;
+            margin: 0 auto 2rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.25rem;
+            background: var(--green);
+            color: #1f272a;
+            border: none;
+            box-shadow: 4px 4px 0 #11181a;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn:hover, .btn:focus-visible { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #11181a; outline: none; }
+        .btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #11181a; }
+
+        .hint {
+            margin: 1.5rem 0 0;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        kbd { font-family: inherit; }
+
+        .small-link {
+            color: var(--green);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 2.75rem 1.25rem 2.25rem; box-shadow: 8px 8px 0 var(--shadow); }
+            .eyebrow { font-size: 0.5rem; }
+        }
     </style>
 </head>
 <body>
-    <p>Loading SPIAN45.CV_...<br><br>
-       Not redirected? <a href="https://kitatumbuh.my.canva.site/website-design">Press start here</a>.<br>
-       Looking for my links? <a href="links.html">They're here</a>.</p>
+    <main class="card">
+        <!-- Screen 1: start screen (matches the Canva design) -->
+        <section class="screen active" id="start" aria-label="Start screen">
+            <p class="eyebrow">A Pixel Portfolio Adventure</p>
+            <h1>SPIAN45.CV<span class="cursor">_</span></h1>
+            <p class="tagline">Meet Muh. Ibnu. Explore skills, unlock the journey, and take on creative quests.</p>
+            <button class="btn" type="button" data-go="1">&#9654; Press Start</button>
+            <p class="hint">Press <kbd>Enter</kbd> to start · Use <kbd>&larr;</kbd> / <kbd>&rarr;</kbd> to explore</p>
+        </section>
+
+        <!-- Screen 2: placeholder until the next levels are designed -->
+        <section class="screen" id="next" aria-label="Next level">
+            <p class="eyebrow">Level 1</p>
+            <h1>LOADING<span class="cursor">_</span></h1>
+            <p class="tagline">New levels are still being built. Check back soon!</p>
+            <a class="btn" href="links.html">&#9654; My Links</a>
+            <p class="hint">Use <kbd>&larr;</kbd> to go back</p>
+        </section>
+    </main>
+
+    <script>
+        const screens = document.querySelectorAll('.screen');
+        let current = 0;
+
+        function show(i) {
+            current = Math.max(0, Math.min(screens.length - 1, i));
+            screens.forEach((s, n) => s.classList.toggle('active', n === current));
+        }
+
+        document.querySelectorAll('[data-go]').forEach(b =>
+            b.addEventListener('click', () => show(Number(b.dataset.go)))
+        );
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && current === 0) show(1);
+            if (e.key === 'ArrowRight') show(current + 1);
+            if (e.key === 'ArrowLeft') show(current - 1);
+        });
+    </script>
 </body>
 </html>
